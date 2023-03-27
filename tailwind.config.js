@@ -17,9 +17,26 @@ module.exports = {
         800: '#752323',
         900: '#471515',
         950: '#0D0404'
+      },
+      redAlpha: {
+        50: '#FF4C4C',
+        100: '#FF4C4Ce6',
+        200: '#FF4C4Ccf',
+        300: '#FF4C4Cb5',
+        400: '#FF4C4C9e',
+        500: '#FF4C4C85',
+        600: '#FF4C4C6e',
+        700: '#FF4C4C54',
+        800: '#FF4C4C3d',
+        900: '#FF4C4C26',
+        950: '#FF4C4Cd',
       }
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        'robotoFlex' : ['Roboto Flex', 'sans-serif']
+      }
+    },
   },
   plugins: [],
 }
