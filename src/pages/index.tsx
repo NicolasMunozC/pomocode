@@ -6,6 +6,7 @@ import { Heading } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { theme } from '../utils/theme'
+import { pomodoroStages  } from '@/utils/pomodoroStages'
 
 
 export default function Home() {
@@ -17,9 +18,9 @@ export default function Home() {
   const [currentSeconds, setCurrentSeconds] = useState(0)
   const [currentStage, setCurrentStage] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
-  const pomodoroStages:string[] = ['Focus', 'Short Break', 'Focus', 'Short Break', 'Focus', 'Short Break', 'Focus', 'Long Break']
   const [currentTheme, setCurrentTheme] = useState('red')
 
+  // useEffect that change between stages and reset timers
   useEffect( () => {
     if(currentStage < pomodoroStages.length){
       if(pomodoroStages[currentStage] === 'Focus'){
@@ -44,6 +45,7 @@ export default function Home() {
     setCurrentStage(0)
   }
 
+  // useEffect that update the time ever second.
   useEffect( () => {
     if(isRunning) {
       let interval = setInterval( () => {
