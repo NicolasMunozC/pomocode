@@ -1,10 +1,11 @@
 import { IoPlayForward, IoReload } from 'react-icons/io5'
 import { theme } from '../utils/theme'
+import { pomodoroStages } from '@/utils/pomodoroStages'
 
 /* AGREGAR LA FUNCIONALIDAD DE QUE CUANDO ESTE EN EL ULTIMO STAGE EL BOTON SER REMPLACE POR UNO PARA REINICIAR EL POMODORO */
 
 
-function ForwardButton({currentTheme, currentStage, pomodoroStages, setCurrentStage}: any) {
+function ForwardButton({currentTheme, currentStage, setCurrentStage}: any) {
   return (
     <button className={`${theme.button.bg[currentTheme]} w-20 h-20 rounded-3xl self-center`} 
      onClick={
