@@ -5,6 +5,7 @@ import Stage from '@/components/Stage'
 import { Heading } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import { theme } from '../utils/theme'
 
 
 export default function Home() {
@@ -37,37 +38,6 @@ export default function Home() {
       }
     } 
   }, [currentStage, focusTime, shortBreakTime, longBreakTime])
-
-
-  const theme:any = {
-    text: {
-      red: 'text-red-900',
-      blue: 'text-blue-900',
-      green: 'text-green-900'
-    },
-    bg: {
-      red: 'bg-red-50',
-      blue: 'bg-blue-50',
-      green: 'bg-green-50'
-    },
-    button: {
-      text: {
-        red: 'text-red-900',
-        blue: 'text-blue-900',
-        green: 'text-green-900'
-      },
-      bg: {
-        red: 'bg-redAlpha-100/[0.15]',
-        blue: 'bg-blueAlpha-100/[0.15]',
-        green: 'bg-greenAlpha-100/[0.15]'
-      },
-      specialBg: {
-        red: 'bg-redAlpha-700/[0.71]',
-        blue: 'bg-blueAlpha-600/[0.62]',
-        green: 'bg-greenAlpha-600/[0.62]'
-      }
-    }
-  }
 
   function resetPomodoro(){
     setIsRunning(false)
@@ -106,16 +76,16 @@ export default function Home() {
 
           <div className='flex flex-col'>
             <Stage currentStage={pomodoroStages[currentStage]} />
-            
+
             <div className={`${theme.text[currentTheme]} flex flex-col text-center text-[240px]`}>
               <h1 className={`${isRunning ? 'font-bold' : 'font-thin'}`}>{currentMinutes > 9 ? currentMinutes : '0' + currentMinutes}</h1>
               <h1 className={`${isRunning ? 'font-bold' : 'font-thin'}`}>{currentSeconds > 9 ? currentSeconds : '0' + currentSeconds}</h1>
             </div>
 
             <div className='flex flex-row gap-4 mt-6'>
-              <SettingsButton theme={theme} currentTheme={currentTheme} />
-              <PlayButton theme={theme} currentTheme={currentTheme} isRunning={isRunning} setIsRunning={setIsRunning} />
-              <ForwardButton theme={theme} currentTheme={currentTheme} currentStage={currentStage} pomodoroStages={pomodoroStages} setCurrentStage={setCurrentStage} />
+              <SettingsButton currentTheme={currentTheme} />
+              <PlayButton currentTheme={currentTheme} isRunning={isRunning} setIsRunning={setIsRunning} />
+              <ForwardButton currentTheme={currentTheme} currentStage={currentStage} pomodoroStages={pomodoroStages} setCurrentStage={setCurrentStage} />
             </div>
 
           </div>

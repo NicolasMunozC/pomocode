@@ -1,6 +1,7 @@
 import { IoPlaySharp, IoPlayForward, IoPause } from 'react-icons/io5'
+import { theme } from '../utils/theme'
 
-function PlayButton({theme, currentTheme, isRunning, setIsRunning}: any) {
+function PlayButton({currentTheme, isRunning, setIsRunning}: any) {
   return (
     <button className={`${theme.button.specialBg[currentTheme]} w-32 h-24 rounded-3xl self-center`} onClick={()=>setIsRunning(!isRunning)}>
     {
