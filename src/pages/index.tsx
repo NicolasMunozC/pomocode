@@ -1,8 +1,8 @@
+import SettingsButton from '@/components/SettingsButton'
 import Stage from '@/components/Stage'
 import { Heading } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { AiFillSetting } from 'react-icons/ai'
 import { IoPlaySharp, IoPlayForward, IoPause } from 'react-icons/io5'
 
 export default function Home() {
@@ -113,9 +113,7 @@ export default function Home() {
             </div>
 
             <div className='flex flex-row gap-4 mt-6'>
-              <button className={`${theme.button.bg[currentTheme]} w-20 h-20 rounded-3xl self-center`}>
-                <AiFillSetting className={`${theme.button.text[currentTheme]} m-auto text-2xl`} />
-              </button>
+              <SettingsButton theme={theme} currentTheme={currentTheme} />
               <button className={`${theme.button.specialBg[currentTheme]} w-32 h-24 rounded-3xl self-center`} onClick={()=>setIsRunning(!isRunning)}>
                 {
                   isRunning 
