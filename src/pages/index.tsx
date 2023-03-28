@@ -1,10 +1,11 @@
+import ForwardButton from '@/components/ForwardButton'
 import PlayButton from '@/components/PlayButton'
 import SettingsButton from '@/components/SettingsButton'
 import Stage from '@/components/Stage'
 import { Heading } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { IoPlayForward } from 'react-icons/io5'
+
 
 export default function Home() {
 
@@ -104,10 +105,8 @@ export default function Home() {
         <div className='grid place-content-center w-full h-full'>
 
           <div className='flex flex-col'>
-
-            <div className='text-center'>
-              <Stage currentStage={pomodoroStages[currentStage]} />
-            </div>
+            <Stage currentStage={pomodoroStages[currentStage]} />
+            
             <div className={`${theme.text[currentTheme]} flex flex-col text-center text-[240px]`}>
               <h1 className={`${isRunning ? 'font-bold' : 'font-thin'}`}>{currentMinutes > 9 ? currentMinutes : '0' + currentMinutes}</h1>
               <h1 className={`${isRunning ? 'font-bold' : 'font-thin'}`}>{currentSeconds > 9 ? currentSeconds : '0' + currentSeconds}</h1>
@@ -116,10 +115,7 @@ export default function Home() {
             <div className='flex flex-row gap-4 mt-6'>
               <SettingsButton theme={theme} currentTheme={currentTheme} />
               <PlayButton theme={theme} currentTheme={currentTheme} isRunning={isRunning} setIsRunning={setIsRunning} />
-                {/* AGREGAR LA FUNCIONALIDAD DE QUE CUANDO ESTE EN EL ULTIMO STAGE EL BOTON SER REMPLACE POR UNO PARA REINICIAR EL POMODORO */}
-              <button className={`${theme.button.bg[currentTheme]} w-20 h-20 rounded-3xl self-center disabled:cursor-not-allowed`} disabled={currentStage === pomodoroStages.length - 1 && true} onClick={()=>setCurrentStage(currentStage + 1)}>
-                <IoPlayForward className={`${theme.button.text[currentTheme]} text-red-900 m-auto text-2xl`} />
-              </button>
+              <ForwardButton theme={theme} currentTheme={currentTheme} currentStage={currentStage} pomodoroStages={pomodoroStages} setCurrentStage={setCurrentStage} />
             </div>
 
           </div>
