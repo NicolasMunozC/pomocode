@@ -1,9 +1,10 @@
+import PlayButton from '@/components/PlayButton'
 import SettingsButton from '@/components/SettingsButton'
 import Stage from '@/components/Stage'
 import { Heading } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { IoPlaySharp, IoPlayForward, IoPause } from 'react-icons/io5'
+import { IoPlayForward } from 'react-icons/io5'
 
 export default function Home() {
 
@@ -114,13 +115,7 @@ export default function Home() {
 
             <div className='flex flex-row gap-4 mt-6'>
               <SettingsButton theme={theme} currentTheme={currentTheme} />
-              <button className={`${theme.button.specialBg[currentTheme]} w-32 h-24 rounded-3xl self-center`} onClick={()=>setIsRunning(!isRunning)}>
-                {
-                  isRunning 
-                  ? <IoPause className={`${theme.button.text[currentTheme]} m-auto text-2xl`} />
-                  : <IoPlaySharp className={`${theme.button.text[currentTheme]} m-auto text-2xl`} />
-                }
-              </button>
+              <PlayButton theme={theme} currentTheme={currentTheme} isRunning={isRunning} setIsRunning={setIsRunning} />
                 {/* AGREGAR LA FUNCIONALIDAD DE QUE CUANDO ESTE EN EL ULTIMO STAGE EL BOTON SER REMPLACE POR UNO PARA REINICIAR EL POMODORO */}
               <button className={`${theme.button.bg[currentTheme]} w-20 h-20 rounded-3xl self-center disabled:cursor-not-allowed`} disabled={currentStage === pomodoroStages.length - 1 && true} onClick={()=>setCurrentStage(currentStage + 1)}>
                 <IoPlayForward className={`${theme.button.text[currentTheme]} text-red-900 m-auto text-2xl`} />
