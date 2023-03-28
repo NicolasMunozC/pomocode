@@ -76,7 +76,7 @@ export default function Home() {
         <div className='grid place-content-center w-full h-full'>
 
           <div className='flex flex-col'>
-            <Stage currentStage={pomodoroStages[currentStage]} />
+            <Stage currentStage={pomodoroStages[currentStage]} currentTheme={currentTheme} />
 
             <div className={`${theme.text[currentTheme]} flex flex-col text-center text-[240px]`}>
               <h1 className={`${isRunning ? 'font-bold' : 'font-thin'}`}>{currentMinutes > 9 ? currentMinutes : '0' + currentMinutes}</h1>
