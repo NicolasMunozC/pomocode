@@ -84,7 +84,7 @@ export default function Home() {
             </div>
 
             <div className='flex flex-row gap-4 mt-6'>
-              <SettingsButton currentTheme={currentTheme} />
+              <SettingsButton currentTheme={currentTheme} focusTime={focusTime} setFocusTime={setFocusTime} shortBreakTime={shortBreakTime} setShortBreakTime={setShortBreakTime} longBreakTime={longBreakTime} setLongBreakTime={setLongBreakTime}   />
               <PlayButton currentTheme={currentTheme} isRunning={isRunning} setIsRunning={setIsRunning} />
               <ForwardButton currentTheme={currentTheme} currentStage={currentStage} pomodoroStages={pomodoroStages} setCurrentStage={setCurrentStage} />
             </div>
