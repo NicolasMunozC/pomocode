@@ -6,6 +6,7 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { theme } from '../utils/theme'
 import { pomodoroStages  } from '@/utils/pomodoroStages'
+import { useColorMode } from '@chakra-ui/react'
 
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
   const [currentStage, setCurrentStage] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const [currentTheme, setCurrentTheme] = useState('red')
+  const { colorMode } = useColorMode()
 
   // useEffect that change between stages and reset timers
   useEffect( () => {
@@ -72,13 +74,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${theme.bg[currentTheme]} w-screen h-screen leading-none font-robotoFlex `}>
+      <main className={`${theme[colorMode].bg[currentTheme]} w-screen h-screen leading-none font-robotoFlex `}>
         <div className='grid place-content-center w-full h-full'>
 
           <div className='flex flex-col'>
             <Stage currentStage={pomodoroStages[currentStage]} currentTheme={currentTheme} />
 
-            <div className={`${theme.text[currentTheme]} flex flex-col text-center text-[240px]`}>
+            <div className={`${theme[colorMode].text[currentTheme]} flex flex-col text-center text-[240px]`}>
               <h1 className={`${isRunning ? 'font-bold' : 'font-thin'}`}>{currentMinutes > 9 ? currentMinutes : '0' + currentMinutes}</h1>
               <h1 className={`${isRunning ? 'font-bold' : 'font-thin'}`}>{currentSeconds > 9 ? currentSeconds : '0' + currentSeconds}</h1>
             </div>

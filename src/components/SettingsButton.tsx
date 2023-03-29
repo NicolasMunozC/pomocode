@@ -20,16 +20,16 @@ export default function SettingsButton({currentTheme, focusTime, shortBreakTime,
 
   return (
     <>
-      <button className={`${theme.button.bg[currentTheme]} w-20 h-20 rounded-3xl self-center`} onClick={onOpen}>
-        <AiFillSetting className={`${theme.button.text[currentTheme]} m-auto text-2xl`} />
+      <button className={`${theme[colorMode].button.bg[currentTheme]} w-20 h-20 rounded-3xl self-center`} onClick={onOpen}>
+        <AiFillSetting className={`${theme[colorMode].button.text[currentTheme]} m-auto text-2xl`} />
       </button>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered  >
         <ModalOverlay/>
         <ModalContent className='rounded-3xl'>
-          <ModalHeader className={` ${theme.text[currentTheme]} rounded-t-3xl`}>Settings</ModalHeader>
+          <ModalHeader className={` ${theme[colorMode].text[currentTheme]} rounded-t-3xl`}>Settings</ModalHeader>
           <ModalCloseButton />
-          <ModalBody className={` ${theme.text[currentTheme]}`}>
+          <ModalBody className={` ${theme[colorMode].text[currentTheme]}`}>
             <div className='flex flex-col my-10'>
 
               <FormControl display='flex' alignItems='center' justifyContent='space-between' mb={5}>

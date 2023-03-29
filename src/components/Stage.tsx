@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { TbBrain, TbCoffee } from 'react-icons/tb'
 import { theme } from '@/utils/theme'
+import { useColorMode } from '@chakra-ui/react'
 
 type StageProps = {
     currentStage: string,
@@ -9,8 +10,10 @@ type StageProps = {
 
 export default function Stage({currentStage, currentTheme}: StageProps) {
 
+  const { colorMode } = useColorMode()
+
   return (
-    <div className={`w-fit flex flexRow px-4 py-1 gap-2 mx-auto rounded-3xl border-2 border-${currentTheme}-900 ${theme.bg[currentTheme]}`}>
+    <div className={`w-fit flex flexRow px-4 py-1 gap-2 mx-auto rounded-3xl border-2 ${theme[colorMode].border[currentTheme]} ${theme[colorMode].focusBg[currentTheme]}`}>
       {
         currentStage === 'Focus'
         ? <TbBrain className='text-2xl self-center' />
