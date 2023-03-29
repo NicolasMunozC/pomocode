@@ -18,12 +18,16 @@ export default function Home() {
   const [currentSeconds, setCurrentSeconds] = useState(0)
   const [currentStage, setCurrentStage] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
+  const [autoStart, setAutoStart] = useState(true)
   const [currentTheme, setCurrentTheme] = useState('red')
   const { colorMode } = useColorMode()
 
   // useEffect that change between stages and reset timers
   useEffect( () => {
     if(currentStage < pomodoroStages.length){
+
+      !autoStart && setIsRunning(false)
+
       if(pomodoroStages[currentStage] === 'Focus'){
         setCurrentTheme('red')
         setCurrentMinutes(focusTime)
@@ -39,7 +43,7 @@ export default function Home() {
         setCurrentSeconds(0)
       }
     } 
-  }, [currentStage, focusTime, shortBreakTime, longBreakTime])
+  }, [currentStage, focusTime, shortBreakTime, longBreakTime, autoStart])
 
   function resetPomodoro(){
     setIsRunning(false)
@@ -86,7 +90,7 @@ export default function Home() {
             </div>
 
             <div className='flex flex-row gap-4 mt-6'>
-              <SettingsButton currentTheme={currentTheme} focusTime={focusTime} setFocusTime={setFocusTime} shortBreakTime={shortBreakTime} setShortBreakTime={setShortBreakTime} longBreakTime={longBreakTime} setLongBreakTime={setLongBreakTime}   />
+              <SettingsButton currentTheme={currentTheme} focusTime={focusTime} setFocusTime={setFocusTime} shortBreakTime={shortBreakTime} setShortBreakTime={setShortBreakTime} longBreakTime={longBreakTime} setLongBreakTime={setLongBreakTime} autoStart={autoStart} setAutoStart={setAutoStart}   />
               <PlayButton currentTheme={currentTheme} isRunning={isRunning} setIsRunning={setIsRunning} />
               <ForwardButton currentTheme={currentTheme} currentStage={currentStage} pomodoroStages={pomodoroStages} setCurrentStage={setCurrentStage} />
             </div>

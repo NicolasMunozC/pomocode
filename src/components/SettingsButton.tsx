@@ -1,22 +1,29 @@
 import { AiFillSetting } from 'react-icons/ai'
 import { theme } from '../utils/theme'
-import { FormControl, FormLabel, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Switch, useColorMode, useDisclosure } from '@chakra-ui/react'
+import { FormControl, FormLabel, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Switch, useColorMode, useDisclosure } from '@chakra-ui/react'
+import Link from 'next/link'
 
 type SettingsProps = {
   currentTheme: string,
   focusTime: number,
   shortBreakTime: number,
   longBreakTime: number,
+  autoStart: boolean,
   setFocusTime: any,
   setShortBreakTime: any,
   setLongBreakTime: any,
+  setAutoStart: any,
 }
 
-export default function SettingsButton({currentTheme, focusTime, shortBreakTime, longBreakTime}: SettingsProps) {
+export default function SettingsButton({currentTheme, focusTime, shortBreakTime, longBreakTime, setFocusTime, setShortBreakTime, setLongBreakTime, autoStart, setAutoStart}: SettingsProps) {
 
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { colorMode, toggleColorMode } = useColorMode()
+
+  const onFocusTimeChange= (event: React.ChangeEvent<HTMLInputElement> ) => {
+    setFocusTime(event.target.value)
+  }
 
   return (
     <>
@@ -43,11 +50,12 @@ export default function SettingsButton({currentTheme, focusTime, shortBreakTime,
                 <FormLabel htmlFor='focus-minutes'>
                   Focus Minutes
                 </FormLabel>
+                {/* ESTOY CREANDO LOS ONCHANGE!!!!! */}
                 <NumberInput id='focus-minutes' defaultValue={focusTime} maxW={20}>
-                  <NumberInputField />
+                  <NumberInputField onChange={onFocusTimeChange} />
                   <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
+                    <NumberIncrementStepper onClick={()=>{setFocusTime(focusTime + 1)}}/>
+                    <NumberDecrementStepper onClick={()=>{setFocusTime(focusTime - 1)}}/>
                   </NumberInputStepper>
                 </NumberInput>
               </FormControl>
@@ -59,8 +67,8 @@ export default function SettingsButton({currentTheme, focusTime, shortBreakTime,
                 <NumberInput id='shortBreakTime' defaultValue={shortBreakTime} maxW={20}>
                   <NumberInputField />
                   <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
+                    <NumberIncrementStepper onClick={()=>{setShortBreakTime(shortBreakTime + 1)}}/>
+                    <NumberDecrementStepper onClick={()=>{setShortBreakTime(shortBreakTime - 1)}}/>
                   </NumberInputStepper>
                 </NumberInput>
               </FormControl>
@@ -72,8 +80,8 @@ export default function SettingsButton({currentTheme, focusTime, shortBreakTime,
                 <NumberInput id='longBreakTime' defaultValue={longBreakTime} maxW={20}>
                   <NumberInputField />
                   <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
+                    <NumberIncrementStepper onClick={()=>{setLongBreakTime(longBreakTime + 1)}}/>
+                    <NumberDecrementStepper onClick={()=>{setLongBreakTime(longBreakTime - 1)}}/>
                   </NumberInputStepper>
                 </NumberInput>
               </FormControl>
@@ -82,7 +90,7 @@ export default function SettingsButton({currentTheme, focusTime, shortBreakTime,
                 <FormLabel htmlFor='auto-start' >
                   Auto start
                 </FormLabel>
-                <Switch id='auto-start' />
+                <Switch id='auto-start' onChange={()=>setAutoStart(!autoStart)} isChecked={autoStart}/>
               </FormControl>
 
               <FormControl display='flex' alignItems='center' justifyContent='space-between' mb={5}>
@@ -93,6 +101,9 @@ export default function SettingsButton({currentTheme, focusTime, shortBreakTime,
               </FormControl>
             </div>
           </ModalBody>
+          <ModalFooter>
+            <p>Created by <Link href='https://nmunoz.vercel.app' className={`font-bold ${theme[colorMode].text[currentTheme]} `}>Nicolás Muñoz 🇨🇱</Link></p>
+          </ModalFooter>
         </ModalContent>
       </Modal>
 
