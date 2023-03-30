@@ -97,7 +97,7 @@ export default function SettingsButton({currentTheme, focusTime, shortBreakTime,
                 <FormLabel htmlFor='sound' >
                   Sound
                 </FormLabel>
-                <Switch id='sound' />
+                <Switch id='sound' isDisabled className='disabled:cursor-not-allowed'/>
               </FormControl>
             </div>
           </ModalBody>
