@@ -33,7 +33,7 @@ export default function SettingsButton({currentTheme, focusTime, shortBreakTime,
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered  >
         <ModalOverlay/>
-        <ModalContent className='rounded-3xl'>
+        <ModalContent>
           <ModalHeader className={` ${theme[colorMode].text[currentTheme]} rounded-t-3xl`}>Settings</ModalHeader>
           <ModalCloseButton />
           <ModalBody className={` ${theme[colorMode].text[currentTheme]}`}>
